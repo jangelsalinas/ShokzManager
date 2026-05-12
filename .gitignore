@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/dist/
+dist/
+*.egg-info/
+.eggs/
+*.spec.bak
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.log
+logs/
+# Binarios ffmpeg descargados localmente (no commitear)
+resources/bin/macos/ffmpeg
+resources/bin/windows/ffmpeg.exe
+# Ajustes locales generados en runtime
+settings_local.json
