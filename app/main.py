@@ -14,7 +14,7 @@ from app.utils.logging import setup_logging
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(prog=APP_NAME)
-    parser.add_argument("--version", action="store_true", help="Muestra versión y sale")
+    parser.add_argument("--version", action="store_true", help="Show version and exit")
     return parser.parse_args(argv)
 
 
