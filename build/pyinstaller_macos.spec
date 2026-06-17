@@ -4,6 +4,7 @@
 
 import sys
 from pathlib import Path
+from PyInstaller.utils.hooks import collect_data_files
 
 ROOT = Path(SPECPATH).parent  # shokzmanager/
 
@@ -15,6 +16,9 @@ if mac_bin.exists() and any(f for f in mac_bin.iterdir() if f.name == "ffmpeg"):
 icons_dir = ROOT / "resources" / "icons"
 if icons_dir.exists() and any(icons_dir.iterdir()):
     datas.append((str(icons_dir), "resources/icons"))
+
+# Flet carga este archivo JSON en runtime para resolver iconos de Material.
+datas += collect_data_files("flet.controls.material", includes=["icons.json"])
 
 icon_file = ROOT / "resources" / "icons" / "app.icns"
 icon_arg = str(icon_file) if icon_file.exists() else None
