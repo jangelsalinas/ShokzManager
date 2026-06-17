@@ -6,6 +6,8 @@ import sys
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_data_files
 
+from PyInstaller.utils.hooks import collect_data_files
+
 ROOT = Path(SPECPATH).parent  # shokzmanager/
 
 # Incluir datas sólo si existen (bin se descarga en CI antes del build)
@@ -16,6 +18,7 @@ if mac_bin.exists() and any(f for f in mac_bin.iterdir() if f.name == "ffmpeg"):
 icons_dir = ROOT / "resources" / "icons"
 if icons_dir.exists() and any(icons_dir.iterdir()):
     datas.append((str(icons_dir), "resources/icons"))
+datas += collect_data_files("flet", includes=["controls/material/icons.json"])
 
 # Flet carga este archivo JSON en runtime para resolver iconos de Material.
 datas += collect_data_files("flet.controls.material", includes=["icons.json"])
