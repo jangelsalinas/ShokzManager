@@ -3,6 +3,7 @@
 # Uso (en PowerShell): pyinstaller build\pyinstaller_windows.spec
 
 from pathlib import Path
+from PyInstaller.utils.hooks import collect_data_files
 
 ROOT = Path(SPECPATH).parent  # shokzmanager\
 
@@ -14,6 +15,7 @@ if any(f for f in win_bin.iterdir() if f.suffix == ".exe") if win_bin.exists() e
 icons_dir = ROOT / "resources" / "icons"
 if icons_dir.exists() and any(icons_dir.iterdir()):
     datas.append((str(icons_dir), "resources/icons"))
+datas += collect_data_files("flet.controls.material", includes=["icons.json"])
 
 icon_file = ROOT / "resources" / "icons" / "app.ico"
 icon_arg = str(icon_file) if icon_file.exists() else None
