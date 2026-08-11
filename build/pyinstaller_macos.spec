@@ -5,10 +5,13 @@
 import sys
 from pathlib import Path
 
+from PyInstaller.utils.hooks import collect_data_files
+
 ROOT = Path(SPECPATH).parent  # shokzmanager/
 
 # Incluir datas sólo si existen (bin se descarga en CI antes del build)
 datas = []
+datas += collect_data_files("flet")
 mac_bin = ROOT / "resources" / "bin" / "macos"
 if mac_bin.exists() and any(f for f in mac_bin.iterdir() if f.name == "ffmpeg"):
     datas.append((str(mac_bin), "resources/bin/macos"))
